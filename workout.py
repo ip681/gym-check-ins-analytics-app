@@ -100,44 +100,34 @@ checkins_per_gym = full_data['location'].value_counts()
 subscription_counts = users_data["subscription_plan"].value_counts().reset_index()
 subscription_counts.columns = ["subscription_plan", "count"]
 
-# Създаване на графика
-fig = px.bar(
-    subscription_counts,
-    x="subscription_plan",
-    y="count",
-    title="Разпределение на абонаментните планове",
-    labels={"subscription_plan": "Абонаментен план", "count": "Брой абонати"},
-    color="subscription_plan",
-)
-# Задаване на минимална граница на y-ос
-fig.update_yaxes(range=[1600, 1700])  # Минималната стойност е 0, максималната се определя автоматично
 
-# Показване на графиката в Streamlit
-st.title("Графика на абонаментите")
-st.plotly_chart(fig)
-
-st.write(users_data)
 
 
 
 # Създаване на сайдбар
 st.sidebar.title("Навигация")
 
-# Създаване на отделни бутони
-if st.sidebar.button("Данни"):
-    show_data = True
-    st.write("Тук ще покажем данните.")
-
-    st.write(users_data)
-    st.write(gym_locations_data)
-    st.write(checkin_checkout_history)
-    st.write(subscription_plans)
-
-
-
-
 if st.sidebar.button("Анализ"):
     st.write("Тук ще покажем резултатите от анализа.")
+
+    # Създаване на графика
+    fig = px.bar(
+        subscription_counts,
+        x="subscription_plan",
+        y="count",
+        title="Разпределение на абонаментните планове",
+        labels={"subscription_plan": "Абонаментен план", "count": "Брой абонати"},
+        color="subscription_plan",
+    )
+    # Задаване на минимална граница на y-ос
+    fig.update_yaxes(range=[1600, 1700])  # Минималната стойност е 0, максималната се определя автоматично
+
+    # Показване на графиката в Streamlit
+    st.title("Графика на абонаментите")
+    st.plotly_chart(fig)
+
+    st.write(users_data)
+
 
 
     plt.figure(figsize=(10, 6))
@@ -149,6 +139,21 @@ if st.sidebar.button("Анализ"):
     # plt.show()
     st.pyplot(plt)
 
+
+
+
+
+
+
+# Създаване на отделни бутони
+if st.sidebar.button("Данни"):
+    show_data = True
+    st.write("Тук ще покажем данните.")
+
+    st.write(users_data)
+    st.write(gym_locations_data)
+    st.write(checkin_checkout_history)
+    st.write(subscription_plans)
 
 
 
@@ -202,4 +207,4 @@ if st.sidebar.button("Информация"):
         # st.write("DataFrame без индекс:")
         # st.write(st.dataframe(df.style.hide_index()))
 
-        st.write("Версия на Pandas:", pd.__version__)
+        # st.write("Версия на Pandas:", pd.__version__)
