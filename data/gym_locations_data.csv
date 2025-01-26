@@ -1,0 +1,11 @@
+gym_id,location,gym_type,facilities
+gym_1,New York,Premium,"Climbing Wall, Swimming Pool, Basketball Court"
+gym_2,Los Angeles,Budget,"Climbing Wall, Yoga Classes, Sauna"
+gym_3,Chicago,Budget,"Sauna, Climbing Wall, Swimming Pool"
+gym_4,Houston,Premium,"Climbing Wall, Basketball Court, Swimming Pool"
+gym_5,Phoenix,Standard,"Basketball Court, CrossFit, Swimming Pool"
+gym_6,Philadelphia,Budget,"Swimming Pool, Climbing Wall, Sauna"
+gym_7,San Antonio,Premium,"Sauna, Basketball Court, Swimming Pool"
+gym_8,San Diego,Standard,"Basketball Court, Sauna, CrossFit"
+gym_9,Dallas,Premium,"Sauna, CrossFit, Yoga Classes"
+gym_10,San Jose,Premium,"Swimming Pool, Sauna, CrossFit"

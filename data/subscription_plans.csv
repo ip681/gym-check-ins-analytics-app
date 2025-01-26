@@ -1,0 +1,4 @@
+subscription_plan,price_per_month,features
+Basic,19.99,"Access to basic gym facilities, Limited class access, 1 guest pass per month"
+Pro,49.99,"Access to all facilities, Unlimited class access, 5 guest passes per month, Free personal trainer session"
+Student,9.99,"Access to basic facilities, Limited class access, 1 guest pass per month, Discounted for students"
