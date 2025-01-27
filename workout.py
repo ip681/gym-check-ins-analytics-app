@@ -107,6 +107,10 @@ subscription_counts.columns = ["subscription_plan", "count"]
 # Създаване на сайдбар
 st.sidebar.title("Навигация")
 
+
+
+
+
 if st.sidebar.button("Анализ"):
     st.write("Тук ще покажем резултатите от анализа.")
 
@@ -208,3 +212,49 @@ if st.sidebar.button("Информация"):
         # st.write(st.dataframe(df.style.hide_index()))
 
         # st.write("Версия на Pandas:", pd.__version__)
+
+        tab1, tab2, tab3 = st.tabs(["Таб 1", "Таб 2", "Таб 3"])
+
+        with tab1:
+            st.write("Таб 1 някъв текст примерно.")
+
+        with tab2:
+            st.write("Таб 2 някъв текст примерно.")
+
+        with tab3:
+            st.write("Таб 3 някъв текст примерно.")
+
+    with st.expander("Виж повече"):
+        st.write("Това е допълнителна информация, която се показва при кликване върху заглавието.")
+        st.write("Можеш да  текст, изображения или други елементи тук.")
+
+
+
+    st.markdown("""
+    ## Цели на проекта
+    * Карта по градове
+    * Възрастови групи
+    * Интензивност на тренировки
+                    
+    `Това е код`
+    ### Подзаглавие
+
+    | Колонка 1 | Колонка 2 |
+    |---|---|
+    | Данни 1 | Данни 2 |
+    | Данни 3 | Данни 4 |
+
+    [Link към Google](https://www.google.com)
+    """)
+
+
+
+# Определяме опциите за филтъра
+options = ['Едно', 'Две', 'Три', 'Четири', 'Пет']
+
+with st.sidebar:
+    # Добавяме филтъра в страничната лента
+    selected_options = st.multiselect('Избери опции:', options)
+
+    # Показваме избраните опции
+    st.write('Избрани опции:', selected_options)
