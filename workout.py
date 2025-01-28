@@ -3,6 +3,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import plotly.express as px
 import seaborn as sns
+from geopy.geocoders import Nominatim
 
 st.set_page_config(
     page_title="Workout",           # Заглавие на страницата
@@ -114,6 +115,52 @@ st.sidebar.title("Навигация")
 if st.sidebar.button("Анализ"):
     st.write("Тук ще покажем резултатите от анализа.")
 
+
+    #KARTA
+    unique_cities = users_data['user_location'].value_counts().reset_index()
+    unique_cities.columns = ['city', 'count']
+
+    # Използваме Geopy за намиране на координати
+    geolocator = Nominatim(user_agent="geoapi")
+    def get_coordinates(city):
+        location = geolocator.geocode(city + ", USA")
+        if location:
+            return pd.Series([location.latitude, location.longitude])
+        return pd.Series([None, None])
+
+    # Добавяне на координати към таблицата с уникални градове
+    unique_cities[['latitude', 'longitude']] = unique_cities['city'].apply(get_coordinates)
+
+    # Премахване на градове с липсващи координати
+    unique_cities = unique_cities.dropna(subset=['latitude', 'longitude'])
+
+
+    # Създаване на интерактивна карта с Plotly
+    fig = px.scatter_geo(
+        unique_cities,
+        lat='latitude',
+        lon='longitude',
+        text='city',
+        size='count',
+        title='Визуализация на градовете от dataset-а',
+        projection='albers usa'
+    )
+
+    # fig.show()
+    st.plotly_chart(fig)
+
+
+
+
+
+
+
+
+
+
+
+
+
     # Създаване на графика
     fig = px.bar(
         subscription_counts,
@@ -134,14 +181,7 @@ if st.sidebar.button("Анализ"):
 
 
 
-    plt.figure(figsize=(10, 6))
-    sns.barplot(x=checkins_per_gym.index, y=checkins_per_gym.values, palette="viridis")
-    plt.title('Number of Check-ins per Gym Location', fontsize=16)
-    plt.xlabel('Gym Location', fontsize=12)
-    plt.ylabel('Number of Check-ins', fontsize=12)
-    plt.xticks(rotation=45)
-    # plt.show()
-    st.pyplot(plt)
+
 
 
 

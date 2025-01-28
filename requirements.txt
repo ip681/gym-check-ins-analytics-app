@@ -3,3 +3,4 @@ pandas
 matplotlib
 plotly
 seaborn
+geopy>=2.3.0
